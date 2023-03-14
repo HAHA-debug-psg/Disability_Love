@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace，即命名空间，它的作用就是对SQL进行分类化管理 -->
+<mapper namespace="com.dao.IUserInformationDao">
+
+    <select id="findUserInformationById" parameterType="int" resultType="userInformation">
+        select *
+        from user_information
+        where id= '${id}'
+    </select>
+
+    <update id="updateUserInformation" parameterType="userInformation" >
+        update user_information
+        set uname='${uname}',
+            gender='${gender}',
+            age='${age}',
+            marital_status='${marital_status}',
+            address_province_code='${address_province_code}' ,
+            address_city_code='${address_city_code}',
+            address_county_code='${address_county_code}',
+            address_detail_code='${address_detail_code}',
+            address='${address}' ,
+
+            height='${height}',
+            weight='${weight}',
+            disability='${disability}',
+            education_background='${education_background}',
+            introduction='${introduction}'
+        where id= '${id}'
+    </update>
+
+
+    <select id="findUserInformationAll" resultType="userInformation">
+        select *
+        from user_information
+    </select>
+
+
+<!--    birthday='${birthday}' ,-->
+    <!--返回主键值-->
+    <insert id="insertUserInformation">
+        insert into user_information (id)
+        values ('${id}')
+    </insert>
+
+
+
+</mapper>

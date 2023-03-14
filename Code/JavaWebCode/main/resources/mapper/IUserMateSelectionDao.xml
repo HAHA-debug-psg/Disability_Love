@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace，即命名空间，它的作用就是对SQL进行分类化管理 -->
+<mapper namespace="com.dao.IUserMateSelectionDao">
+
+    <select id="findUserMateSelectionById" parameterType="int" resultType="userMateSelection">
+        select *
+        from user_mate_selection
+        where id= '${id}'
+    </select>
+
+    <update id="updateUserMateSelection" parameterType="userMateSelection" >
+        update user_mate_selection
+        set expect_marital_status='${marital_status}',
+            expect_address_province_code='${expect_address_province_code}' ,
+            expect_address_city_code='${expect_address_city_code}',
+            expect_address_county_code='${expect_address_county_code}',
+            expect_address='${expect_address}',
+            expect_age_min='${expect_age_min}',
+            expect_age_max='${expect_age_max}',
+            expect_height_min='${expect_height_min}',
+            expect_height_max='${expect_height_max}',
+            expect_weight_min='${expect_weight_min}',
+            expect_weight_max='${expect_weight_max}'
+
+        where id= '${id}'
+    </update>
+
+
+    <select id="findUserMateSelectionAll" resultType="userMateSelection">
+        select *
+        from user_mate_selection
+    </select>
+
+
+    <!--    birthday='${birthday}' ,-->
+    <!--返回主键值-->
+    <insert id="insertUserMateSelection">
+        insert into user_mate_selection (id)
+        values ('${id}')
+    </insert>
+
+
+
+</mapper>

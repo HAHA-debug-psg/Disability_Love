@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace，即命名空间，它的作用就是对SQL进行分类化管理 -->
+<mapper namespace="com.dao.IManagerDao">
+    <select id="findManagerByUsernameAndPwd" parameterType="manager" resultType="manager">
+        select * from manager where username = '${username}' and password = '${password}'
+    </select>
+
+</mapper>

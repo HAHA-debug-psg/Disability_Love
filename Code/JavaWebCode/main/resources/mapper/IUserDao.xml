@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace，即命名空间，它的作用就是对SQL进行分类化管理 -->
+<mapper namespace="com.dao.IUserDao">
+
+    <select id="findUserByUsernameAndPwd" parameterType="user" resultType="user">
+        select * from user where username = '${username}' and password = '${password}'
+    </select>
+
+    <select id="findUserByUsername" parameterType="string" resultType="user">
+        select * from user where username = '${username}'
+    </select>
+
+    <!--返回主键值-->
+    <insert id="insertUser"
+            >
+        insert into user (username, password)
+        values ('${username}', '${password}')
+    </insert>
+
+
+
+    <select id="findUserIdMax" resultType="int">
+        select MAX(id)
+        from user
+
+    </select>
+<!--    keyProperty="id"-->
+<!--    useGeneratedKeys="true"-->
+
+
+    <select id="findUsersAll" resultType="map">
+        select user_information.id,user_information.uname
+        from user join user_information on user.id=user_information.id
+
+    </select>
+
+    <select id="findUserById" resultType="user">
+        select * from user where id = ${id}
+    </select>
+
+    <select id="deleteUserById" resultType="user">
+        delete  from user where id = ${user_id}
+    </select>
+
+</mapper>

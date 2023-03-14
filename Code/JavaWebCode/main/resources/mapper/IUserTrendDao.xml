@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace，即命名空间，它的作用就是对SQL进行分类化管理 -->
+<mapper namespace="com.dao.IUserTrendDao">
+
+
+    <!--先获取当前用户的t_id最大值，然后在加一再插入-->
+    <insert id="insertTrend" >
+
+        insert
+        into user_trend (t_id, u_id, uname,text)
+        values ((select max_t_id
+                from
+                    (select max(t_id) as max_t_id
+                    from user_trend
+                    where u_id='${uid}') as m_t_id)
+                    + 1,
+                '${uid}', '${uname}','${text}')
+    </insert>
+
+<!--    public int deleteTrend(@Param("uid")int uid,@Param("tid")int tid);-->
+    <delete id="deleteTrend" >
+        delete  from user_trend where u_id = ${uid} and t_id=${tid}
+    </delete>
+
+<!--    <select id="findUserInformationById" parameterType="userInformation" resultType="userInformation">-->
+<!--        select *-->
+<!--        from user_information-->
+<!--        where id= '${id}'-->
+<!--    </select>-->
+
+
+    <select id="findUserTrendById" resultType="userTrend">
+        select *
+        from user_trend
+        where u_id='${uid}'
+
+    </select>
+    <select id="findUserTrendAll" resultType="userTrend">
+        select *
+        from user_trend
+
+    </select>
+
+
+<!--    <select id="updateUserInformation" parameterType="userInformation" resultType="int">-->
+<!--        update user_information-->
+<!--        set id= '${id}',-->
+<!--            name='${name}',-->
+<!--            gender='${gender}',-->
+<!--            age='${age}',-->
+<!--            marital_status='${marital_status},'-->
+<!--            birthday='${birthday}' ,-->
+<!--            address_province='${address_province}' ,-->
+<!--            adderss_city='${address_city}',-->
+<!--            address_county='${address_county}',-->
+<!--            address_detail='${address_detail}',-->
+<!--            height='${birthday}',-->
+<!--            weight='${birthday}',-->
+<!--            disability='${birthday}',-->
+<!--            education_background='${education_background}'-->
+
+
+<!--        where username = '${username}' and password = '${password}'-->
+<!--    </select>-->
+
+
+
+
+
+</mapper>
